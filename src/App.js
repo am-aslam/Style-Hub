@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Header from './Components/Header/Navbar';
+import Banner from './Components/Banner/Home';
+import FashionTrends from './Components/FashionTrends/FashionTrends';
+import OfferSection from './Components/OfferSection/OfferSection';
+import FashionBlog from './Components/FashionBrands/FashionBrands';
+import FashionBrands from './Components/FashionBlog/FashionBlog';
+import Middle from './Components/Middle/Middle';
+import Footer from './Components/Footer/Footer';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Banner />
+      <FashionTrends />
+      <OfferSection />
+      <FashionBlog />
+      <FashionBrands />
+      <Middle/>
+      <Footer />
     </div>
   );
-}
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default App;
