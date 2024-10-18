@@ -19,7 +19,7 @@ const Banner = () => {
         <h1 className="text-6xl font-bold">FASHION LIFE</h1>
         <h6 className="text-lg mt-4 ">
           Welcome to the Fashion of
-          <span className="bg-black py-1 px-3 rounded-lg text-white"> Style's World</span>
+          <span className="bg-black py-1 px-3 rounded-lg text-white "> Style's World</span>
         </h6>
       </header>
 
@@ -27,7 +27,7 @@ const Banner = () => {
       <header className="relative w-full" id="home">
         <img className="w-full h-auto" src={Image2} alt="Fashion" />
         <div className="absolute top-0 left-0 p-8 md:py-96 py-28">
-          <h1 className="text-white text-4xl">Style's World</h1>
+          <h1 className="text-white text-4xl italic">Style's World</h1>
           <h1 className="text-white text-7xl hidden sm:block font-bold">FASHION STYLE</h1>
           <h6 className="mt-4">
             <button

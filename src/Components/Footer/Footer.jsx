@@ -4,104 +4,67 @@ import { BsTwitterX } from "react-icons/bs";
 import { FaGoogle } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
-import { MdOutlineHomeWork } from "react-icons/md";
-import { FaPhoneSquareAlt } from "react-icons/fa";
-import { BiLogoGmail } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="">
-      {/* Footer */}
-      <footer className="text-center text-black bg-gray-100 shadow" >
-        {/* Grid container */}
-        <div className="p-4 pb-0">
-          {/* Section: Links */}
-          <section className="">
-            {/*Grid row*/}
-            <div className="flex flex-wrap justify-center">
-              {/* Grid column - Company name */}
-              <div className="w-full md:w-1/3 lg:w-1/4 p-3">
-                <h6 className="uppercase text-lg font-bold">STYLE HUB</h6>
-                <p className="">
-                  Lifestyle websites try to cover everything for everyone, but as women, femme,
-                  and non-binary people, we’re multi-layered with unique needs and interests—and
-                  we deserve media that recognizes our interests. We follow.
-                </p>
-              </div>
+    <footer className="flex flex-wrap justify-between relative py-10 px-5 bg-gray-100">
+      <div className="col flex flex-col items-start mb-5 ml-12">
+        <h1 className="text-3xl font-semibold">STYLE HUB</h1>
+        <h4 className="text-sm mb-5">Contact</h4>
+        <p><strong>Address:</strong> Palakkad, Mannarkkad</p>
+        <p><strong>Phone:</strong> +111111111 +12324564</p>
+        <p><strong>Hours:</strong> 10.00 - 18.00, Mon - Sat</p>
+        <div className="follow mt-5">
+          <h4 className="text-sm mb-2">Follow Us</h4>
+          <div className="icon flex space-x-2">
+          <FaFacebook className=" text-gray-600 hover:text-green-500 cursor-pointer"/>
+          <BsTwitterX  className=" text-gray-600 hover:text-green-500 cursor-pointer"/>
+          <FaGoogle className=" text-gray-600 hover:text-green-500 cursor-pointer"/>
+          <FaInstagramSquare className="fab fa-youtube text-gray-600 hover:text-green-500 cursor-pointer"/>
+          <FaLinkedin className=" text-gray-600 hover:text-green-500 cursor-pointer"/>
+          
+          </div>
+        </div>
+      </div>
 
-              {/* Grid column - Products */}
-              <div className="w-full md:w-1/4 p-3">
-                <h6 className="uppercase mb-4 font-bold">Products</h6>
-                <ul className="space-y-2">
-                  <li><a href="#!" className="text-black hover:text-gray-500">Home</a></li>
-                  <li><a href="#!" className="text-black hover:text-gray-500">About</a></li>
-                  <li><a href="#!" className="text-black hover:text-gray-500">Shopping</a></li>
-                  <li><a href="#!" className="text-black hover:text-gray-500">Adding</a></li>
-                </ul>
-              </div>
-
-              {/* Grid column - Contact */}
-              <div className="w-full md:w-1/3 lg:w-1/4 p-3 ">
-                <h6 className="uppercase mb-4 font-bold">Contact</h6>
-                <div className="flex flex-col justify-center items-center">
-                  <p><MdOutlineHomeWork />
-                  <span> India, Palakkad</span>
-                 </p>
-                  <p>
-                    <BiLogoGmail /> 
-                    <span> info@gmail.com</span>
-                   </p>
-                  <p>
-                    <FaPhoneSquareAlt />
-                    <span>+ 91 222 333 33</span> 
-                    </p>
-                  <p>
-                    
-                    <FaPhoneSquareAlt />
-                    <span>+ 91 234 567 88</span>
-                     </p>
-                </div>
-              </div>
-
-              {/* Grid column - Follow us */}
-              <div className="w-full md:w-1/4 p-3">
-                <h6 className="uppercase mb-4 font-bold">Follow us</h6>
-                <div className="flex space-x-2 justify-center">
-                  {/* Facebook */}
-                  <a className="bg-[#3b5998] p-2 rounded-full" href="#!">
-                    <FaFacebook />
-                  </a>
-                  {/* Twitter */}
-                  <a className="bg-[#55acee] p-2 rounded-full" href="#!">
-                    <BsTwitterX />
-                  </a>
-                  {/* Google */}
-                  <a className="bg-[#dd4b39] p-2 rounded-full" href="#!">
-                    <FaGoogle />
-                  </a>
-                  {/* Instagram */}
-                  <a className="bg-[#ac2bac] p-2 rounded-full" href="#!">
-                    <FaInstagramSquare />
-                  </a>
-                  {/* LinkedIn */}
-                  <a className="bg-[#0082ca] p-2 rounded-full" href="#!">
-                    <FaLinkedin />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
+      <div className="sec flex flex-wrap justify-between">
+        <div className="col flex flex-col items-start mb-5 ml-12">
+          <h4 className="text-sm mb-5">About</h4>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">About Us</Link>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">Delivery Information</Link>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">Privacy Policy</Link>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">Terms and Condition</Link>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">Contact Us</Link>
         </div>
 
-        {/* Copyright */}
-        <div className="text-center p-3 border-t-2 border-gray-300" >
-          © 2024 Copyright:{" "}
-          <a className="text-black hover:underline" href="#">
-            hafeexhafe@gmail.com
-          </a>
+        <div className="col flex flex-col items-start mb-5 ml-12">
+          <h4 className="text-sm mb-5">My Account</h4>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">Sign In</Link>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">View Cart</Link>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">My Account</Link>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">My Wishlist</Link>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">Track My Order</Link>
+          <Link href="#" className="text-sm text-gray-900 mb-2 hover:text-blue-500">Help</Link>
         </div>
-      </footer>
-    </div>
+
+        <div className="col flex flex-col items-start mb-5 ml-12">
+          <h4 className="text-sm mb-5">Install App</h4>
+          <p className="text-sm mb-2">From App Store or Google Play</p>
+          <div className="row flex space-x-3">
+            <img className="border border-green-500 rounded-lg" src="https://i.postimg.cc/Y2s5mLdR/app.jpg" alt="App Store" />
+            <img className="border border-green-500 rounded-lg" src="https://i.postimg.cc/7YvyWTS6/play.jpg" alt="Google Play" />
+          </div>
+          <p className="text-sm mt-4">Secured Payment Gateways</p>
+          <img src="https://i.postimg.cc/kgfzqVRW/pay.png" alt="Payment Methods" />
+        </div>
+      </div>
+
+      <div className="copyright w-full text-center mt-5">
+        <p>© 2024 All rights reserved Style Hub</p>
+      </div>
+    </footer>
+
   );
 };
 

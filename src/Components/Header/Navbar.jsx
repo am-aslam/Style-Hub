@@ -3,9 +3,9 @@ import { FaFacebook, FaSearch } from "react-icons/fa";
 import { PiInstagramLogoFill } from "react-icons/pi";
 import { FaSquarePinterest } from "react-icons/fa6";
 import { BsFillMenuButtonFill, BsX } from "react-icons/bs";
-import { FaShoppingCart } from "react-icons/fa";// Import icons
+import { FaShoppingCart } from "react-icons/fa";
 
-const Header = () => {
+const Header = ({ cartCount }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -18,17 +18,20 @@ const Header = () => {
       <nav className="navbar hidden md:flex justify-between items-center px-6 sm:px-8 py-4">
         {/* Brand Logo */}
         <div className="navbar-brand">
-          <h1 className="text-3xl italic">STYLE HUB</h1>
+          <h1 className="text-3xl ">STYLE HUB</h1>
         </div>
 
         {/* Navbar Links */}
         <div className="navbar-collapse flex items-center space-x-10">
-          <ul className="navbar-nav flex space-x-8 items-center">
+          <ul className="navbar-nav flex space-x-8 items-center uppercase ">
             <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><a className="nav-link text-sm font-semibold" href="/">Home</a></li>
-            <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><a className="nav-link text-sm font-semibold" href="#">About</a></li>
-            <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><a className="nav-link text-sm font-semibold" href="#">Shop</a></li>
-            <li>
+            <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><a className="nav-link text-sm font-semibold" href="/about">About</a></li>
+            <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><a className="nav-link text-sm font-semibold" href="/Shop">Shop</a></li>
+            <li className='flex items-center'>
               <FaShoppingCart />
+              {cartCount > 0 && (
+                <span style={{ color: 'red', marginLeft: '5px' }}>{cartCount}</span>
+              )}
             </li>
           </ul>
           {/* Right Menu - Social Icons and Search */}
@@ -63,7 +66,7 @@ const Header = () => {
       <nav className="navbar flex md:hidden justify-between items-center px-6 sm:px-8 py-4">
         {/* Brand Logo */}
         <div className="navbar-brand">
-          <h1 className="text-3xl italic ">STYLE HUB</h1>
+          <h1 className="text-3xl ">STYLE HUB</h1>
         </div>
 
         {/* Hamburger Menu for Mobile */}
@@ -76,9 +79,9 @@ const Header = () => {
       {isOpen && (
         <div className="md:hidden bg-gray-100 p-4 absolute text-center w-full left-0 top-16 shadow-lg">
           <ul className="flex flex-col space-y-4 ">
-            <li><a className="nav-link text-lg text-center font-semibold" href="#">Home</a></li>
-            <li><a className="nav-link text-lg text-center font-semibold" href="#">About</a></li>
-            <li><a className="nav-link text-lg text-center font-semibold" href="#">Shop</a></li>
+            <li><a className="nav-link text-lg text-center font-semibold" href="/">Home</a></li>
+            <li><a className="nav-link text-lg text-center font-semibold" href="/about">About</a></li>
+            <li><a className="nav-link text-lg text-center font-semibold" href="/shop">Shop</a></li>
             <li className='flex justify-center'><FaShoppingCart size={20} /></li>
           </ul>
           <div className="navbar-collapse flex flex-col items-center space-x-10">
