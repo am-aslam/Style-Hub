@@ -13,6 +13,10 @@ const Header = ({ cartCount }) => {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <section className="header bg-gray-100 mb-20 fixed z-50 w-full shadow-lg">
       {/* Navbar for Medium and Larger Screens */}
@@ -80,26 +84,33 @@ const Header = ({ cartCount }) => {
       {isOpen && (
         <div className="md:hidden bg-gray-100 p-4 absolute text-center w-full left-0 top-16 shadow-lg">
           <ul className="flex flex-col space-y-4 ">
-            <li><Link to='/' className="nav-link text-lg text-center font-semibold" >Home</Link></li>
-            <li><Link to='/about' className="nav-link text-lg text-center font-semibold" >About</Link></li>
-            <li><Link to='/shop' className="nav-link text-lg text-center font-semibold">Shop</Link></li>
+            <li>
+              <Link to='/' className="nav-link text-lg text-center font-semibold" onClick={closeMenu}>Home</Link>
+            </li>
+            <li>
+              <Link to='/about' className="nav-link text-lg text-center font-semibold" onClick={closeMenu}>About</Link>
+            </li>
+            <li>
+              <Link to='/shop' className="nav-link text-lg text-center font-semibold" onClick={closeMenu}>Shop</Link>
+            </li>
             <li className='flex justify-center'><FaShoppingCart size={20} /></li>
           </ul>
+
           <div className="navbar-collapse flex flex-col items-center space-x-10">
 
             {/* Right Menu - Social Icons and Search */}
             <ul className="right-menu flex py-5 space-x-4 items-center justify-center">
               <li>
-                <a href="#" className="text-xl text-gray-700 hover:text-black"><FaFacebook /></a>
+                <Link href="#" className="text-xl text-gray-700 hover:text-black"><FaFacebook /></Link>
               </li>
               <li>
-                <a href="#" className="text-xl text-gray-700 hover:text-black"><PiInstagramLogoFill /></a>
+                <Link href="#" className="text-xl text-gray-700 hover:text-black"><PiInstagramLogoFill /></Link>
               </li>
               <li>
-                <a href="#" className="text-xl text-gray-700 hover:text-black"><FaSquarePinterest /></a>
+                <Link href="#" className="text-xl text-gray-700 hover:text-black"><FaSquarePinterest /></Link>
               </li>
-
             </ul>
+
             <div className="input-group flex">
               <input
                 type="text"
