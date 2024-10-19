@@ -12,7 +12,7 @@ function About() {
       {/* Brand Story Section */}
       <section className="bg-white py-16">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Story</h2>
+          <h2 className="text-3xl font-semibold text-gray-900 mb-4">Our Story</h2>
           <p className="text-gray-600 text-lg leading-relaxed">
             Founded in 2010, our fashion brand was born out of the desire to bring bold, fresh designs to life. Our commitment to quality,
             sustainability, and timeless style has made us a beloved name in the industry. From humble beginnings to global recognition,
