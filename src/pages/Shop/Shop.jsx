@@ -6,7 +6,9 @@ import ImageLock2 from '../../Components/Asset/b17.jpg';
 import ImageLock3 from '../../Components/Asset/b18.jpg';
 import ImageLock4 from '../../Components/Asset/b4.jpg';
 import ImageLock5 from '../../Components/Asset/b7.jpg';
-import ShopData from '../../data/Shopdata'; // Ensure this is correctly imported
+import ShopData from '../../data/Shopdata';
+ // Ensure this is correctly imported
+ import {Data} from '../../data/Data';
 import { Link } from 'react-router-dom';
 
 function Shop() {
@@ -92,7 +94,7 @@ function Shop() {
         <h2 className="text-6xl font-semibold">New Arrivals</h2>
         <p className="text-gray-700 mb-6">Summer Collection New Modern Design</p>
         <div className="flex flex-wrap justify-center">
-          {ShopData.map((item) => (
+          {Data.map((item) => (
             <div
               key={item.id}
               className="w-1/4 min-w-[250px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"

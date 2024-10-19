@@ -4,6 +4,7 @@ import { PiInstagramLogoFill } from "react-icons/pi";
 import { FaSquarePinterest } from "react-icons/fa6";
 import { BsFillMenuButtonFill, BsX } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Header = ({ cartCount }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,9 +25,9 @@ const Header = ({ cartCount }) => {
         {/* Navbar Links */}
         <div className="navbar-collapse flex items-center space-x-10">
           <ul className="navbar-nav flex space-x-8 items-center uppercase ">
-            <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><a className="nav-link text-sm font-semibold" href="/">Home</a></li>
-            <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><a className="nav-link text-sm font-semibold" href="/about">About</a></li>
-            <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><a className="nav-link text-sm font-semibold" href="/Shop">Shop</a></li>
+            <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><Link to='/' className="nav-link text-sm font-semibold" >Home</Link></li>
+            <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><Link to='/about' className="nav-link text-sm font-semibold" >About</Link></li>
+            <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><Link to='/Shop' className="nav-link text-sm font-semibold" >Shop</Link></li>
             <li className='flex items-center'>
               <FaShoppingCart />
               {cartCount > 0 && (
@@ -37,13 +38,13 @@ const Header = ({ cartCount }) => {
           {/* Right Menu - Social Icons and Search */}
           <ul className="right-menu flex space-x-4 items-center">
             <li>
-              <a href="#" className="text-xl text-gray-700 hover:text-black"><FaFacebook /></a>
+              <Link href="#" className="text-xl text-gray-700 hover:text-black"><FaFacebook /></Link>
             </li>
             <li>
-              <a href="#" className="text-xl text-gray-700 hover:text-black"><PiInstagramLogoFill /></a>
+              <Link href="#" className="text-xl text-gray-700 hover:text-black"><PiInstagramLogoFill /></Link>
             </li>
             <li>
-              <a href="#" className="text-xl text-gray-700 hover:text-black"><FaSquarePinterest /></a>
+              <Link href="#" className="text-xl text-gray-700 hover:text-black"><FaSquarePinterest /></Link>
             </li>
             <li>
               {/* Search Bar */}
@@ -79,9 +80,9 @@ const Header = ({ cartCount }) => {
       {isOpen && (
         <div className="md:hidden bg-gray-100 p-4 absolute text-center w-full left-0 top-16 shadow-lg">
           <ul className="flex flex-col space-y-4 ">
-            <li><a className="nav-link text-lg text-center font-semibold" href="/">Home</a></li>
-            <li><a className="nav-link text-lg text-center font-semibold" href="/about">About</a></li>
-            <li><a className="nav-link text-lg text-center font-semibold" href="/shop">Shop</a></li>
+            <li><Link to='/' className="nav-link text-lg text-center font-semibold" >Home</Link></li>
+            <li><Link to='/about' className="nav-link text-lg text-center font-semibold" >About</Link></li>
+            <li><Link to='/shop' className="nav-link text-lg text-center font-semibold">Shop</Link></li>
             <li className='flex justify-center'><FaShoppingCart size={20} /></li>
           </ul>
           <div className="navbar-collapse flex flex-col items-center space-x-10">
@@ -111,7 +112,6 @@ const Header = ({ cartCount }) => {
             </div>
           </div>
         </div>
-
       )}
     </section>
   );
