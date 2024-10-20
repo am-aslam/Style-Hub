@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaFacebook, FaSearch } from "react-icons/fa";
 import { PiInstagramLogoFill } from "react-icons/pi";
 import { FaSquarePinterest } from "react-icons/fa6";
 import { BsFillMenuButtonFill, BsX } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { CardContext } from '../../pages/Shop/CardContext';
 
-const Header = ({ cartCount }) => {
+
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { cardItems } = useContext(CardContext);
+  const hasItems = cardItems?.length > 0;
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -32,10 +36,17 @@ const Header = ({ cartCount }) => {
             <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><Link to='/' className="nav-link text-sm font-semibold" >Home</Link></li>
             <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><Link to='/about' className="nav-link text-sm font-semibold" >About</Link></li>
             <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><Link to='/Shop' className="nav-link text-sm font-semibold" >Shop</Link></li>
-            <li className='flex items-center'>
-              <FaShoppingCart />
-              {cartCount > 0 && (
-                <span style={{ color: 'red', marginLeft: '5px' }}>{cartCount}</span>
+            <li className='relative md:ml-5'>
+              <Link to="/another">
+                <FaShoppingCart
+                  size={20}
+                  color={hasItems ? 'red' : 'black'} // Change the color based on items in the cart
+                />
+              </Link>
+              {hasItems && (
+                <span className='absolute -top-3 -right-2 text-white rounded-full h-5 w-5 flex items-center justify-center text-xs'>
+                  {cardItems.length}
+                </span>
               )}
             </li>
           </ul>
@@ -72,9 +83,25 @@ const Header = ({ cartCount }) => {
         {/* Brand Logo */}
         <div className="navbar-brand">
           <h1 className="text-3xl ">STYLE HUB</h1>
+
         </div>
 
         {/* Hamburger Menu for Mobile */}
+        <div className='flex items-center pl-48'>
+          <div className='relative md:ml-5'>
+            <Link to="/another">
+              <FaShoppingCart
+                size={20}
+                color={hasItems ? 'red' : 'black'} // Change the color based on items in the cart
+              />
+            </Link>
+            {hasItems && (
+              <span className='absolute -top-3 -right-2  text-white rounded-full h-5 w-5 flex items-center justify-center text-xs'>
+                {cardItems.length}
+              </span>
+            )}
+          </div>
+        </div>
         <button className="navbar-toggler" onClick={toggleMenu}>
           {isOpen ? <BsX className="text-3xl" /> : <BsFillMenuButtonFill className="text-3xl" />}
         </button>

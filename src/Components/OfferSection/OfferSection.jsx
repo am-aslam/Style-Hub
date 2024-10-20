@@ -1,5 +1,6 @@
 import React from 'react'
 import ImagePop from '../Asset/exclusive.jpg'
+import { Link } from 'react-router-dom';
 
 const OfferSection = () => {
   return (
@@ -16,7 +17,7 @@ const OfferSection = () => {
             deserve media that recognizes our interests. We follow these
             9 websites that are as resourceful
           </p>
-          <a href="#" className="bg-black text-white py-2 px-4">Subscribe</a>
+          <Link to='#' className="bg-black text-white py-2 px-4">Subscribe</Link>
         </div>
       </div>
     </section>

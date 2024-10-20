@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoCartOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
 import ImageLock1 from '../../Components/Asset/b10.jpg';
@@ -10,13 +10,25 @@ import ShopData from '../../data/Shopdata';
 // Ensure this is correctly imported
 import { Data } from '../../data/Data';
 import { Link } from 'react-router-dom';
+import { CardContext } from './CardContext';
 
 function Shop() {
   const [cart, setCart] = useState([]);
+  const { addToCard } = useContext(CardContext);
 
-  const handleAddToCart = (products) => {
-    setCart((prevCart) => [...prevCart, products]);
-    alert(`${products.title} has been added to your cart!`);
+  const handleAddToCard = (product) => {
+    // Check if the product is already in the cart
+    const isInCart = cart.find((item) => item.id === product.id);
+
+    if (isInCart) {
+      // If the product is already in the cart, alert the user
+      alert(`${product.title} is already in your cart!`);
+    } else {
+      // If not in the cart, add it and show a success message
+      setCart((prevCart) => [...prevCart, product]);
+      addToCard(product); // Add to the global context
+      // alert(`${product.title} has been added to your cart!`);
+    }
   };
   return (
     <>
@@ -71,11 +83,12 @@ function Shop() {
               <Link
                 to="#"
                 className="absolute bottom-5 right-2 bg-[#e8f6ea] text-[#088178] rounded-full w-10 h-10 flex items-center justify-center"
+                onClick={() => handleAddToCard(product)}
               >
                 <IoCartOutline />
               </Link>
-              <div className='bg-yellow-300 p-2 hover:bg-yellow-400 hidden md:block'>
-                <button onClick={() => handleAddToCart(cart)}>Add to Cart</button>
+              <div className='bg-yellow-300 p-2 hover:bg-yellow-400 hidden md:block' onClick={() => handleAddToCard(product)}>
+                <button>Add to Cart</button>
               </div>
             </div>
           ))}
@@ -111,11 +124,12 @@ function Shop() {
               <Link
                 to="#"
                 className="absolute bottom-5 right-2 bg-[#e8f6ea] text-[#088178] rounded-full w-10 h-10 flex items-center justify-center"
+                onClick={() => handleAddToCard(item)}
               >
                 <IoCartOutline />
               </Link>
-              <div className='bg-yellow-300 p-2 hover:bg-yellow-400 hidden md:block'>
-                <button onClick={() => handleAddToCart(cart)}>Add to Cart</button>
+              <div className='bg-yellow-300 p-2 hover:bg-yellow-400 hidden md:block ' onClick={() => handleAddToCard(item)}>
+                <button >Add to Cart</button>
               </div>
             </div>
           ))}
@@ -182,7 +196,7 @@ function Shop() {
             Get Email updates about our latest shop and <span className="text-[#ffbd27]">special offers.</span>
           </p>
         </div>
-        <div className="flex w-full sm:w-[40%] mt-4 sm:mt-0">
+        <div className="flex md:w-full w-[80%] mt-4 sm:mt-0">
           <input type="text" placeholder="Your email address" className="h-[50px] w-full text-sm px-5 rounded-l-md outline-none" />
           <button className="bg-[#088178] text-white px-5 py-2 whitespace-nowrap rounded-r-md">Sign Up</button>
         </div>
