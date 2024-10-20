@@ -7,8 +7,8 @@ import ImageLock3 from '../../Components/Asset/b18.jpg';
 import ImageLock4 from '../../Components/Asset/b4.jpg';
 import ImageLock5 from '../../Components/Asset/b7.jpg';
 import ShopData from '../../data/Shopdata';
- // Ensure this is correctly imported
- import {Data} from '../../data/Data';
+// Ensure this is correctly imported
+import { Data } from '../../data/Data';
 import { Link } from 'react-router-dom';
 
 function Shop() {
@@ -53,16 +53,16 @@ function Shop() {
         <h2 className="text-6xl font-semibold">Featured Products</h2>
         <p className="text-gray-700 mb-6">Summer Collection New Modern Design</p>
 
-        <div className="flex flex-wrap justify-center">
+        <div className="flex flex-wrap  justify-center">
           {ShopData.map((product) => (
             <div
               key={product.id}
-              className="w-1/4 min-w-[250px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
+              className="w-1/4 md:min-w-[250px] min-w-[200px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
             >
-              <img src={product.image} alt={product.description} className="rounded-lg" />
+              <img src={product.image} alt={product.description} className="rounded-lg w-full" />
               <div className="des text-left p-2">
                 <span className="text-gray-600">{product.title}</span>
-                <h5 className="text-lg mt-2 text-gray-900">{product.description}</h5>
+                <h5 className="md:text-lg text-sm font-semibold mt-2 text-gray-900">{product.description}</h5>
                 <div className="flex text-yellow-300">
                   {[...Array(5)].map((_, index) => <FaStar key={index} />)}
                 </div>
@@ -74,8 +74,8 @@ function Shop() {
               >
                 <IoCartOutline />
               </Link>
-              <div className='bg-yellow-300 p-2 hover:bg-yellow-400'>
-                <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+              <div className='bg-yellow-300 p-2 hover:bg-yellow-400 hidden md:block'>
+                <button onClick={() => handleAddToCart(cart)}>Add to Cart</button>
               </div>
             </div>
           ))}
@@ -97,13 +97,13 @@ function Shop() {
           {Data.map((item) => (
             <div
               key={item.id}
-              className="w-1/4 min-w-[250px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
+              className="w-1/4 md:min-w-[250px] min-w-[200px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
             >
-              <img src={item.image} alt={item.description} className="rounded-lg" />
+              <img src={item.image} alt={item.description} className="rounded-lg w-full" />
               <div className="des text-left p-2">
-                <span className="text-gray-600">{item.title}</span>
-                <h5 className="text-lg mt-2 text-gray-900">{item.description}</h5>
-                <div className="flex text-yellow-300">
+                <span className="text-gray-600 ">{item.title}</span>
+                <h5 className="md:text-lg mt-2 text-gray-900 text-sm font-semibold ">{item.description}</h5>
+                <div className="flex text-yellow-300 ">
                   {[...Array(5)].map((_, index) => <FaStar key={index} />)}
                 </div>
                 <h4 className="text-xl text-[#088178]">${item.price}</h4>
@@ -114,7 +114,7 @@ function Shop() {
               >
                 <IoCartOutline />
               </Link>
-              <div className='bg-yellow-300 p-2 hover:bg-yellow-400'>
+              <div className='bg-yellow-300 p-2 hover:bg-yellow-400 hidden md:block'>
                 <button onClick={() => handleAddToCart(cart)}>Add to Cart</button>
               </div>
             </div>
@@ -123,9 +123,9 @@ function Shop() {
       </section>
 
       {/* Promotional Banner */}
-      <section id="sm-banner" className="flex flex-wrap justify-around section-p1">
+      <section id="sm-banner" className="flex flex-wrap justify-around section-p1 md:py-0 py-10">
         <div
-          className="banner-box flex flex-col justify-center items-start text-left bg-cover bg-center min-w-[580px] h-[40vh] p-8"
+          className="banner-box flex flex-col justify-center items-start text-left bg-cover bg-center min-w-[400px]  md:min-w-[580px] h-[30vh] md:h-[40vh] md:rounded-none rounded-lg p-8"
           style={{ backgroundImage: `url(${ImageLock2})` }}
         >
           <h4 className="text-white text-[20px] font-light">crazy deals</h4>
@@ -136,7 +136,7 @@ function Shop() {
           </button>
         </div>
         <div
-          className="banner-box2 banner-box flex flex-col justify-center items-start text-left bg-cover bg-center min-w-[580px] h-[40vh] p-8"
+          className="banner-box2 banner-box flex flex-col md:mt-0 mt-9 justify-center items-start text-left bg-cover bg-center min-w-[400px]  md:min-w-[580px] h-[30vh] md:h-[40vh] md:rounded-none rounded-lg p-8 "
           style={{ backgroundImage: `url(${ImageLock1})` }}
         >
           <h4 className="text-white text-[20px] font-light">spring/summer</h4>
@@ -149,29 +149,30 @@ function Shop() {
       </section>
 
       {/* Final Promotional Section */}
-      <section id="banner3" className="flex justify-between flex-wrap p-20">
+      <section id="banner3" className="flex justify-between flex-wrap p-20 ">
         <div
-          className="banner-box flex flex-col justify-center items-start bg-cover bg-center min-w-[30%] h-[30vh] p-8 mb-5"
+          className="banner-box flex flex-col justify-center items-start bg-cover bg-center md:min-w-[30%] h-[30vh] p-8 mb-5 md:block hidden"
           style={{ backgroundImage: `url(${ImageLock5})` }}
         >
           <h2 className="text-white font-black text-[22px]">Limited Time Offer</h2>
           <h3 className="text-[#ec544e] font-extrabold text-[15px]">50% off on all accessories</h3>
         </div>
         <div
-          className="banner-box flex flex-col justify-center items-start bg-cover bg-center min-w-[30%] h-[30vh] p-8 mb-5"
+          className="banner-box flex flex-col justify-center items-start bg-cover bg-center min-w-[30%] h-[30vh] p-8 mb-5 md:block hidden"
           style={{ backgroundImage: `url(${ImageLock4})` }}
         >
           <h2 className="text-white font-black text-[22px]">New Arrivals</h2>
           <h3 className="text-[#ec544e] font-extrabold text-[15px]">Check out our new collection</h3>
         </div>
         <div
-          className="banner-box flex flex-col justify-center items-start bg-cover bg-center min-w-[30%] h-[30vh] p-8 mb-5"
+          className="banner-box flex flex-col justify-center items-start bg-cover bg-center min-w-[30%] h-[30vh] p-8 mb-5 md:block hidden"
           style={{ backgroundImage: `url(${ImageLock3})` }}
         >
           <h2 className="text-white font-black text-[22px]">Summer Sale</h2>
           <h3 className="text-[#ec544e] font-extrabold text-[15px]">Up to 70% off</h3>
         </div>
       </section>
+
 
       {/* Newsletter Section */}
       <section id="newsletter" className="flex flex-wrap justify-around items-center bg-[#041e42] bg-no-repeat bg-[20%_30%] py-8" style={{ backgroundImage: "url('https://i.postimg.cc/R0Bs4qqt/b14.png')" }}>
