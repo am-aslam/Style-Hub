@@ -11,10 +11,12 @@ import ShopData from '../../data/Shopdata';
 import { Data } from '../../data/Data';
 import { Link } from 'react-router-dom';
 import { CardContext } from './CardContext';
+// import { CardContext } from './CardContext';
 
 function Shop() {
   const [cart, setCart] = useState([]);
   const { addToCard } = useContext(CardContext);
+  
 
   const handleAddToCard = (product) => {
     // Check if the product is already in the cart
@@ -60,17 +62,17 @@ function Shop() {
         ))}
       </section>
 
-      {/* Featured Products Section */}
       <section id="product1" className="p-10 text-center">
-        <h2 className="text-6xl font-semibold">Featured Products</h2>
-        <p className="text-gray-700 mb-6">Summer Collection New Modern Design</p>
+      <h2 className="text-6xl font-semibold">Featured Products</h2>
+      <p className="text-gray-700 mb-6">Summer Collection New Modern Design</p>
 
-        <div className="flex flex-wrap  justify-center">
-          {ShopData.map((product) => (
-            <div
-              key={product.id}
-              className="w-1/4 md:min-w-[250px] min-w-[200px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
-            >
+      <div className="flex flex-wrap justify-center">
+        {ShopData.map((product) => (
+          <div
+            key={product.id}
+            className="w-1/4 md:min-w-[250px] min-w-[200px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
+          >
+            <Link to={`/product/${product.id}`}> {/* Adjust the route as needed */}
               <img src={product.image} alt={product.description} className="rounded-lg w-full" />
               <div className="des text-left p-2">
                 <span className="text-gray-600">{product.title}</span>
@@ -80,20 +82,27 @@ function Shop() {
                 </div>
                 <h4 className="text-xl text-[#088178]">${product.price}</h4>
               </div>
-              <Link
-                to="#"
-                className="absolute bottom-5 right-2 bg-[#e8f6ea] text-[#088178] rounded-full w-10 h-10 flex items-center justify-center"
-                onClick={() => handleAddToCard(product)}
-              >
-                <IoCartOutline />
-              </Link>
-              <div className='bg-yellow-300 p-2 hover:bg-yellow-400 hidden md:block' onClick={() => handleAddToCard(product)}>
-                <button>Add to Cart</button>
-              </div>
+            </Link>
+            <Link
+              to="#"
+              className="absolute bottom-5 right-2 bg-[#e8f6ea] text-[#088178] rounded-full w-10 h-10 flex items-center justify-center"
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering the link
+                handleAddToCard(product);
+              }}
+            >
+              <IoCartOutline />
+            </Link>
+            <div className='bg-yellow-300 p-2 hover:bg-yellow-400 hidden md:block' onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering the link
+                handleAddToCard(product);
+              }}>
+              <button>Add to Cart</button>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        ))}
+      </div>
+    </section>
 
       {/* Banner Section */}
       <section id="banner" className="flex flex-col items-center justify-center bg-cover h-[40vh] p-10 bg-[url('https://i.postimg.cc/SsC7D5WD/b2.jpg')]">
@@ -102,39 +111,46 @@ function Shop() {
         <button className="mt-4 bg-white text-black p-3 rounded">Explore more</button>
       </section>
 
-      {/* New Arrivals Section */}
       <section id="new-arrivals" className="p-10 text-center">
-        <h2 className="text-6xl font-semibold">New Arrivals</h2>
-        <p className="text-gray-700 mb-6">Summer Collection New Modern Design</p>
-        <div className="flex flex-wrap justify-center">
-          {Data.map((item) => (
-            <div
-              key={item.id}
-              className="w-1/4 md:min-w-[250px] min-w-[200px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
-            >
+      <h2 className="text-6xl font-semibold">New Arrivals</h2>
+      <p className="text-gray-700 mb-6">Summer Collection New Modern Design</p>
+      <div className="flex flex-wrap justify-center">
+        {Data.map((item) => (
+          <div
+            key={item.id}
+            className="w-1/4 md:min-w-[250px] min-w-[200px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
+          >
+            <Link to={`/product/${item.id}`}> {/* Navigate to the product detail page */}
               <img src={item.image} alt={item.description} className="rounded-lg w-full" />
               <div className="des text-left p-2">
-                <span className="text-gray-600 ">{item.title}</span>
-                <h5 className="md:text-lg mt-2 text-gray-900 text-sm font-semibold ">{item.description}</h5>
-                <div className="flex text-yellow-300 ">
+                <span className="text-gray-600">{item.title}</span>
+                <h5 className="md:text-lg mt-2 text-gray-900 text-sm font-semibold">{item.description}</h5>
+                <div className="flex text-yellow-300">
                   {[...Array(5)].map((_, index) => <FaStar key={index} />)}
                 </div>
                 <h4 className="text-xl text-[#088178]">${item.price}</h4>
               </div>
-              <Link
-                to="#"
-                className="absolute bottom-5 right-2 bg-[#e8f6ea] text-[#088178] rounded-full w-10 h-10 flex items-center justify-center"
-                onClick={() => handleAddToCard(item)}
-              >
-                <IoCartOutline />
-              </Link>
-              <div className='bg-yellow-300 p-2 hover:bg-yellow-400 hidden md:block ' onClick={() => handleAddToCard(item)}>
-                <button >Add to Cart</button>
-              </div>
+            </Link>
+            <Link
+              to="#"
+              className="absolute bottom-5 right-2 bg-[#e8f6ea] text-[#088178] rounded-full w-10 h-10 flex items-center justify-center"
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering the link
+                handleAddToCard(item);
+              }}
+            >
+              <IoCartOutline />
+            </Link>
+            <div className='bg-yellow-300 p-2 hover:bg-yellow-400 hidden md:block' onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering the link
+                handleAddToCard(item);
+              }}>
+              <button>Add to Cart</button>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        ))}
+      </div>
+    </section>
 
       {/* Promotional Banner */}
       <section id="sm-banner" className="flex flex-wrap justify-around section-p1 md:py-0 py-10">
@@ -196,7 +212,7 @@ function Shop() {
             Get Email updates about our latest shop and <span className="text-[#ffbd27]">special offers.</span>
           </p>
         </div>
-        <div className="flex md:w-full w-[80%] mt-4 sm:mt-0">
+        <div className="flex md:w-1/4 w-[80%]   mt-4 sm:mt-0">
           <input type="text" placeholder="Your email address" className="h-[50px] w-full text-sm px-5 rounded-l-md outline-none" />
           <button className="bg-[#088178] text-white px-5 py-2 whitespace-nowrap rounded-r-md">Sign Up</button>
         </div>

@@ -4,7 +4,7 @@ import { PiInstagramLogoFill } from "react-icons/pi";
 import { FaSquarePinterest } from "react-icons/fa6";
 import { BsFillMenuButtonFill, BsX } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CardContext } from '../../pages/Shop/CardContext';
 
 
@@ -12,6 +12,18 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { cardItems } = useContext(CardContext);
   const hasItems = cardItems?.length > 0;
+  const navigate = useNavigate(); // Use navigate for programmatic navigation
+
+  // Handle the click event for the cart icon
+  const handleCartClick = (e) => {
+    if (!hasItems) {
+      e.preventDefault(); // Prevent navigation to /another if the cart is empty
+      alert('Your cart is empty!'); // Show an alert if the cart is empty
+    } else {
+      navigate('/another'); // Navigate to /another only if the cart has items
+    }
+  };
+
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -37,14 +49,17 @@ const Header = () => {
             <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><Link to='/about' className="nav-link text-sm font-semibold" >About</Link></li>
             <li className='border-b-2 transition-all ease-in border-transparent hover:border-green-900 py-1 px-1'><Link to='/Shop' className="nav-link text-sm font-semibold" >Shop</Link></li>
             <li className='relative md:ml-5'>
-              <Link to="/another">
+              {/* Conditionally render the cart icon */}
+              <Link to="/another" onClick={handleCartClick}>
                 <FaShoppingCart
                   size={20}
-                  color={hasItems ? 'red' : 'black'} // Change the color based on items in the cart
+                  color={hasItems ? 'black' : 'gray'} // Change color to gray if the cart is empty
                 />
               </Link>
+
+              {/* Conditionally render the item count badge if there are items */}
               {hasItems && (
-                <span className='absolute -top-3 -right-2 text-white rounded-full h-5 w-5 flex items-center justify-center text-xs'>
+                <span className='absolute -top-3 -right-2 bg-red-500 text-white rounded-full h-5 w-5 flex items-center justify-center text-xs'>
                   {cardItems.length}
                 </span>
               )}
@@ -87,16 +102,19 @@ const Header = () => {
         </div>
 
         {/* Hamburger Menu for Mobile */}
-        <div className='flex items-center pl-48'>
+        <div className='flex items-center pl-20'>
           <div className='relative md:ml-5'>
-            <Link to="/another">
+            {/* Conditionally render the cart icon */}
+            <Link to="/another" onClick={handleCartClick}>
               <FaShoppingCart
                 size={20}
-                color={hasItems ? 'red' : 'black'} // Change the color based on items in the cart
+                color={hasItems ? 'black' : 'gray'} // Change color to gray if the cart is empty
               />
             </Link>
+
+            {/* Conditionally render the item count badge if there are items */}
             {hasItems && (
-              <span className='absolute -top-3 -right-2  text-white rounded-full h-5 w-5 flex items-center justify-center text-xs'>
+              <span className='absolute -top-3 -right-2 bg-red-500 text-white rounded-full h-5 w-5 flex items-center justify-center text-xs'>
                 {cardItems.length}
               </span>
             )}
