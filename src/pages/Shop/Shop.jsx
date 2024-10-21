@@ -86,10 +86,6 @@ function Shop() {
             <Link
               to="#"
               className="absolute bottom-5 right-2 bg-[#e8f6ea] text-[#088178] rounded-full w-10 h-10 flex items-center justify-center"
-              onClick={(e) => {
-                e.stopPropagation(); // Prevent triggering the link
-                handleAddToCard(product);
-              }}
             >
               <IoCartOutline />
             </Link>
@@ -134,10 +130,6 @@ function Shop() {
             <Link
               to="#"
               className="absolute bottom-5 right-2 bg-[#e8f6ea] text-[#088178] rounded-full w-10 h-10 flex items-center justify-center"
-              onClick={(e) => {
-                e.stopPropagation(); // Prevent triggering the link
-                handleAddToCard(item);
-              }}
             >
               <IoCartOutline />
             </Link>
