@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Data from '../../data/Data'; // Adjust the path to your data source
+import { CardContext } from './CardContext';
 
 const ProductDetail = () => {
     const { id } = useParams();
+    const [cart, setCart] = useState([]);
+    const { addToCard } = useContext(CardContext);
     const product = Data.find(item => item.id === parseInt(id)); // Assuming id is a number
 
     if (!product) {
         return <div>Product not found!</div>;
     }
+
+
+  
+    
+  
+    const handleAddToCard = (product) => {
+      // Check if the product is already in the cart
+      const isInCart = cart.find((item) => item.id === product.id);
+  
+      if (isInCart) {
+        // If the product is already in the cart, alert the user
+        alert(`${product.title} is already in your cart!`);
+      } else {
+        // If not in the cart, add it and show a success message
+        setCart((prevCart) => [...prevCart, product]);
+        addToCard(product); // Add to the global context
+        // alert(`${product.title} has been added to your cart!`);
+      }
+    };
 
     return (
         <div className="py-28 flex justify-center items-center">
@@ -52,7 +74,11 @@ const ProductDetail = () => {
 
                     {/* Add to Cart Button */}
                     <div className='px-1'>
-                        <button className="w-full md:w-auto bg-yellow-300 text-white py-2 px-10 rounded-lg hover:bg-yellow-400 transition duration-300">
+                        <button className="w-full md:w-auto bg-yellow-300 text-white py-2 px-10 rounded-lg hover:bg-yellow-400 transition duration-300"
+                        onClick={(e) => {
+                            e.stopPropagation(); // Prevent triggering the link
+                            handleAddToCard(product);
+                          }}>
                             Add to Cart
                         </button>
                     </div>
