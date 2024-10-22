@@ -1,16 +1,17 @@
 import React, { useState, useContext } from 'react';
-import { defultloop, data } from '../../data/CodeLogck';
-import { CardContext } from '../Shop/CardContext'; // Import CardContext
+import { CardContext } from '../Shop/CardProvider';  // Importing CartContext
+import { MdDelete } from "react-icons/md";          // Delete icon
 
-const CartButton = (props) => {
-    const { addToCard } = useContext(CardContext);  // Access addToCard from the context
+const CartButton = () => {
+    const { addToCard, closeCart } = useContext(CardContext);  // Access addToCard and closeCart from context
     const [count, setCount] = useState(1);
+    const [selectedProduct, setSelectedProduct] = useState('product2');
+
     const basePrices = {
         product1: 100,
         product2: 150,
         product3: 200
     };
-    const [selectedProduct, setSelectedProduct] = useState('product2');
 
     const incrementCount = () => {
         setCount(count + 1);
@@ -24,74 +25,65 @@ const CartButton = (props) => {
 
     const totalPrice = basePrices[selectedProduct] * count;
 
-    // Function to handle "Buy Now" button click
-    const handleBuyNow = (product) => {
-        addToCard({
-            id: product.id,           // Make sure the product has a unique ID
-            name: product.description, // Product description
-            price: totalPrice,         // Price (calculated)
-            quantity: count            // Quantity selected
-        });
+    const handlePayment = () => {
+        // Payment logic: Redirect to payment or process order
+        console.log("Proceeding to payment with total price:", totalPrice);
     };
 
     return (
-        <div className='flex flex-col md:flex-row items-center md:items-start md:justify-center gap-10 px-10 py-10 h-auto'>
-            {/* First Item */}
-            <ul className='flex flex-col border border-red-100'>
-                <li className='flex flex-wrap p-4'>
-                    {defultloop.map((item) => (
-                        <div key={item.id} className='flex items-start md:flex-row'>
-                            <p className='text-sm p-4'>
-                                {item.description}
-                            </p>
-                        </div>
-                    ))}
-                    <h1 className='text-3xl font-mono font-bold mt-2'>Hafeex</h1>
-                    {defultloop.map((item) => (
-                        <div key={item.id} className='flex justify-between w-full mt-4'>
-                            <h1 className='text-lg'>${totalPrice}</h1>
-                            <h1 className='text-lg'>{item.loop_just}</h1>
-                        </div>
-                    ))}
-                </li>
-            </ul>
+        <div className="py-28 flex flex-col justify-center items-center border-2">
+            {/* Product box */}
+            <div className='border-2 border-gray-200 p-8 rounded-lg flex flex-col md:flex-row w-full max-w-5xl shadow-lg'>
+                {/* Product Image */}
+                <div className='w-full md:w-1/4 pr-0 md:pr-4 mb-6 md:mb-0'>
+                    <img src='' alt="Product Image" className="rounded-lg w-full" />
+                </div>
 
-            {/* Second Item */}
-            <ul className='flex flex-col md:w-1/2 border border-red-100'>
-                <li className='p-4 flex flex-col'>
-                    {defultloop.map((item) => (
-                        <div key={item.id} className='flex justify-between mt-4'>
-                            <h1 className='text-lg'>${totalPrice}</h1>
-                            <h1 className='text-lg'>{item.loop_just}</h1>
-                        </div>
-                    ))}
-                    <div>
-                        <h1 className='text-3xl font-mono font-bold mt-2'>Hafeex</h1>
-                        {data.map((product) => (
-                            <p key={product.id} className='text-sm mt-2'>
-                                {product.description}
-                            </p>
-                        ))}
-                    </div>
-                    <div className='count flex mt-3 cursor-pointer'>
-                        <h1 className='text-lg p-2' onClick={decrementCount}>-</h1>
-                        <h1 className='text-lg p-2'>{count}</h1>
-                        <h1 className='text-lg p-2' onClick={incrementCount}>+</h1>
-                    </div>
-                    <h1 className='text-lg font-bold'>Price ${totalPrice}</h1>
-
-                    {/* Buy Now Button */}
-                    {data.map((product) => (
-                        <button 
-                            key={product.id}
-                            className='bg-yellow-300 rounded-md transition-transform duration-300 ease-in-out text-sm py-3 font-extrabold hover:bg-yellow-400 mt-2'
-                            onClick={() => handleBuyNow(product)}
-                        >
-                            Buy Now
+                {/* Product Info */}
+                <div className='w-full md:w-2/3 pl-0 md:pl-44 flex flex-col justify-between'>
+                    <div className='flex justify-between items-start mb-4'>
+                        <h2 className="text-2xl md:text-4xl font-semibold uppercase">Product Name</h2>
+                        <h4 className="text-lg md:text-xl font-semibold text-red-400">${totalPrice}</h4>
+                        {/* Close Cart Button */}
+                        <button onClick={closeCart} className="close-button text-red-500 flex items-center font-bold p-2">
+                            <MdDelete size={20} />
                         </button>
-                    ))}
-                </li>
-            </ul>
+                    </div>
+
+                    {/* Color Options */}
+                    <div className="flex space-x-2 mb-4">
+                        <span className='w-8 h-8 bg-red-400 cursor-pointer border-2 border-gray-300'></span>
+                        <span className='w-8 h-8 bg-blue-400 cursor-pointer border-2 border-gray-300'></span>
+                        <span className='w-8 h-8 bg-yellow-400 cursor-pointer border-2 border-gray-300'></span>
+                        <span className='w-8 h-8 bg-green-400 cursor-pointer border-2 border-gray-300'></span>
+                    </div>
+
+                    <p className="text-gray-700 mb-4">Welcome to our store! Browse our amazing products.</p>
+
+                    {/* Size Options */}
+                    <div className="flex space-x-2 mb-4">
+                        <span className='w-8 h-8 flex items-center justify-center bg-gray-200 cursor-pointer border-2 border-gray-300 rounded-full hover:bg-gray-500 hover:text-white'>S</span>
+                        <span className='w-8 h-8 flex items-center justify-center bg-gray-200 cursor-pointer border-2 border-gray-300 rounded-full hover:bg-gray-500 hover:text-white'>M</span>
+                        <span className='w-8 h-8 flex items-center justify-center bg-gray-200 cursor-pointer border-2 border-gray-300 rounded-full hover:bg-gray-500 hover:text-white'>L</span>
+                        <span className='w-8 h-8 flex items-center justify-center bg-gray-200 cursor-pointer border-2 border-gray-300 rounded-full hover:bg-gray-500 hover:text-white'>XL</span>
+                    </div>
+
+                    {/* Quantity Control */}
+                    <div className="flex items-center mb-4">
+                        <button onClick={decrementCount} className="px-3 py-1 bg-gray-200 hover:bg-gray-300">-</button>
+                        <span className="mx-4">{count}</span>
+                        <button onClick={incrementCount} className="px-3 py-1 bg-gray-200 hover:bg-gray-300">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            {/* Payment Button */}
+            <button
+                className="w-full md:w-auto bg-yellow-300 text-white py-2 px-10 rounded-lg hover:bg-yellow-400 transition duration-300 mt-6"
+                onClick={handlePayment}
+            >
+                Payment
+            </button>
         </div>
     );
 };

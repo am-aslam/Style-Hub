@@ -5,7 +5,7 @@ import { FaSquarePinterest } from "react-icons/fa6";
 import { BsFillMenuButtonFill, BsX } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
-import { CardContext } from '../../pages/Shop/CardContext';
+import { CardContext } from '../../pages/Shop/CardProvider';
 
 
 const Header = () => {
