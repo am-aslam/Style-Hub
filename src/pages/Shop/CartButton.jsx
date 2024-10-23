@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import { CardContext } from '../Shop/CardProvider';  // Importing CartContext
 import { MdDelete } from "react-icons/md";          // Delete icon
 
-const CartButton = () => {
-    const { addToCard, closeCart } = useContext(CardContext);  // Access addToCard and closeCart from context
+const CartButton = ({ productId }) => {
+    const { addToCard, removeFromCart, closeCart } = useContext(CardContext);  // Access addToCard, removeFromCart, and closeCart from context
     const [count, setCount] = useState(1);
     const [selectedProduct, setSelectedProduct] = useState('product2');
 
@@ -44,8 +44,8 @@ const CartButton = () => {
                     <div className='flex justify-between items-start mb-4'>
                         <h2 className="text-2xl md:text-4xl font-semibold uppercase">Product Name</h2>
                         <h4 className="text-lg md:text-xl font-semibold text-red-400">${totalPrice}</h4>
-                        {/* Close Cart Button */}
-                        <button onClick={closeCart} className="close-button text-red-500 flex items-center font-bold p-2">
+                        {/* Remove Specific Item Button */}
+                        <button onClick={() => removeFromCart(productId)} className="close-button text-red-500 flex items-center font-bold p-2">
                             <MdDelete size={20} />
                         </button>
                     </div>
