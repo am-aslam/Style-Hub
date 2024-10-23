@@ -1,27 +1,15 @@
 // Shop.js
-import React, { useContext, useState } from 'react';
-import { IoCartOutline } from "react-icons/io5";
+import React from 'react';
 import { FaStar } from "react-icons/fa6";
 import ShopData from '../../data/Shopdata';
 import { Data } from '../../data/Data';
 import { Link } from 'react-router-dom';
-import { CardContext } from '../Shop/CardProvider';  // Correct context import
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../Redux/CartSlice';
 
-function Shop() {
-  const [cart, setCart] = useState([]);
-  const { addToCard } = useContext(CardContext);  // Use CardContext with useContext
+function Shop() {// Use CardContext with useContext
 
-  const handleAddToCard = (product) => {
-    const isInCart = cart.find((item) => item.id === product.id);
-
-    if (isInCart) {
-      alert(`${product.title} is already in your cart!`);
-    } else {
-      setCart((prevCart) => [...prevCart, product]);
-      addToCard(product);  // Add to global cart context
-    }
-  };
-
+  const dispatch = useDispatch()
   return (
     <>
       {/* Hero Section */}
@@ -74,16 +62,18 @@ function Shop() {
                   <h4 className="text-xl text-[#088178]">${product.price}</h4>
                 </div>
               </Link>
-              <div
-                className="bg-yellow-300 p-2 hover:bg-yellow-400"
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent triggering the link
-                  handleAddToCard(product);
-                }}
-              >
-                <button>Add to Cart</button>
+                <button
+                  className="bg-yellow-300 p-2 hover:bg-yellow-400 w-full "
+                  onClick={() =>
+                    dispatch(addToCart({
+                      id: product.id,
+                      title: product.title,
+                      image: product.image,
+                      description: product.description,
+                      price: product.price,
+                    }))
+                  }>Add TO Cart</button>
               </div>
-            </div>
           ))}
         </div>
       </section>
@@ -105,7 +95,7 @@ function Shop() {
               key={item.id}
               className="w-1/4 md:min-w-[250px] min-w-[200px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
             >
-              <Link to={`/product/${item.id}`}>
+              <Link>
                 <img src={item.image} alt={item.description} className="rounded-lg w-full" />
                 <div className="des text-left p-2">
                   <span className="text-gray-600">{item.title}</span>
@@ -116,15 +106,17 @@ function Shop() {
                   <h4 className="text-xl text-[#088178]">${item.price}</h4>
                 </div>
               </Link>
-              <div
-                className="bg-yellow-300 p-2 hover:bg-yellow-400"
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent triggering the link
-                  handleAddToCard(item);
-                }}
-              >
-                <button>Add to Cart</button>
-              </div>
+              <button
+                className="bg-yellow-300 p-2 hover:bg-yellow-400 w-full"
+                onClick={() =>
+                  dispatch(addToCart({
+                    id: item.id,
+                    title: item.title,
+                    image: item.image,
+                    description: item.description,
+                    price: item.price,
+                  }))
+                }>Add TO Cart</button>
             </div>
           ))}
         </div>
