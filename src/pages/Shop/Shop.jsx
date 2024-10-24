@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../Redux/CartSlice';
 
-function Shop() {// Use CardContext with useContext
+function Shop() {
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
   return (
     <>
       {/* Hero Section */}
@@ -51,6 +51,7 @@ function Shop() {// Use CardContext with useContext
               key={product.id}
               className="w-1/4 md:min-w-[250px] min-w-[200px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
             >
+              {/* Link with dynamic product ID */}
               <Link to={`/product/${product.id}`}>
                 <img src={product.image} alt={product.description} className="rounded-lg w-full" />
                 <div className="des text-left p-2">
@@ -62,18 +63,18 @@ function Shop() {// Use CardContext with useContext
                   <h4 className="text-xl text-[#088178]">${product.price}</h4>
                 </div>
               </Link>
-                <button
-                  className="bg-yellow-300 p-2 hover:bg-yellow-400 w-full "
-                  onClick={() =>
-                    dispatch(addToCart({
-                      id: product.id,
-                      title: product.title,
-                      image: product.image,
-                      description: product.description,
-                      price: product.price,
-                    }))
-                  }>Add TO Cart</button>
-              </div>
+              <button
+                className="bg-yellow-300 p-2 hover:bg-yellow-400 w-full"
+                onClick={() =>
+                  dispatch(addToCart({
+                    id: product.id,
+                    title: product.title,
+                    image: product.image,
+                    description: product.description,
+                    price: product.price,
+                  }))
+                }>Add TO Cart</button>
+            </div>
           ))}
         </div>
       </section>
@@ -95,7 +96,8 @@ function Shop() {// Use CardContext with useContext
               key={item.id}
               className="w-1/4 md:min-w-[250px] min-w-[200px] p-2 cursor-pointer transition-shadow duration-200 hover:shadow-lg relative"
             >
-              <Link>
+              {/* Link with dynamic product ID */}
+              <Link to={`/product/${item.id}`}>
                 <img src={item.image} alt={item.description} className="rounded-lg w-full" />
                 <div className="des text-left p-2">
                   <span className="text-gray-600">{item.title}</span>

@@ -101,7 +101,7 @@ const Header = () => {
         </div>
 
         <div className='flex items-center'>
-          <Link to="/cart" onClick={handleCartClick} className='relative'>
+          <Link to="/cart" onClick={handleCartClick} className='relative mr-7'>
             <FaShoppingCart
               size={20}
               color={cartItemCount ? 'black' : 'gray'}
@@ -129,9 +129,7 @@ const Header = () => {
                 </Link>
               </li>
             ))}
-            <li className='flex justify-center'>
-              <FaShoppingCart size={20} />
-            </li>
+            
           </ul>
 
           {/* Right Menu - Social Icons and Search */}

@@ -13,7 +13,7 @@ import ProductDetail from "./pages/Shop/Cart.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Cart from "./pages/Shop/Cart.jsx";
-
+import ProductDetails from "../src/pages/Shop/ProductDetails.jsx";
 const App = () => {// Fix the missing variable name
 
   return (
@@ -24,7 +24,7 @@ const App = () => {// Fix the missing variable name
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
+         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />
     </Router>
